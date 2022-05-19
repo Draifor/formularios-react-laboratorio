@@ -1,0 +1,11 @@
+.card {
+    min-width: 250px;
+    max-width: 95vw;
+    width: fit-content;
+    min-height: 150px;
+    background-color: #eda89f;
+    border: 2px solid #3c3c54;
+    color: #15181d;
+    padding: 20px;
+    margin: 20px;
+}

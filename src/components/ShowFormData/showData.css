@@ -1,0 +1,14 @@
+.card {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-content: space-between;
+    justify-items: flex-start;
+}
+.show-field {
+    display: contents;
+}
+span {
+    background-color: #eda89f;
+    padding: 0 10px;
+    width: 80px;
+}
