@@ -26,6 +26,7 @@ button {
     cursor: pointer;
     user-select: none;
     padding: 6px 16px;
+    margin: 0 15px;
     text-transform: uppercase;
     min-width: 64px;
     border-radius: 4px;

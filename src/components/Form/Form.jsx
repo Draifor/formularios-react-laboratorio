@@ -1,10 +1,12 @@
 import "./form.css";
 import { useContext } from "react";
 import { StatesContext } from "../../App";
+import ShowValidation from "../ShowValidation/ShowValidation";
 
 export default function Form() {
   const states = useContext(StatesContext);
-  const { nameState, lastNameState, cellState, emailState, statusFormState } = states;
+  const { nameState, lastNameState, cellState, emailState, statusFormState } =
+    states;
   const [name, setName] = nameState;
   const [lastName, setLastName] = lastNameState;
   const [cell, setCell] = cellState;
@@ -21,15 +23,24 @@ export default function Form() {
     if (lastName === "") return setStatusForm("apellido");
     if (cell === "") return setStatusForm("celular");
     if (email === "") return setStatusForm("email");
-    setStatusForm('completed');
-    if (statusForm === 'completed') document.querySelector(".form-fields-container").setAttribute("disabled", 'disabled')
+    setStatusForm("completed");
     console.log({ name, lastName, cell, email });
+  };
+  const handleReset = () => {
+    setStatusForm("");
+    setName("");
+    setLastName("");
+    setCell("");
+    setEmail("");
   };
 
   return (
     <form className="form" onSubmit={handleSubmit}>
       <p className="form-description">Por favor diligencia con tus datos</p>
-      <fieldset className="form-fields-container" >
+      <fieldset
+        className="form-fields-container"
+        disabled={statusForm === "completed" ? true : ""}
+      >
         <legend className="form-title">Datos de registro</legend>
         <label className="form-label required" htmlFor="name">
           Nombre
@@ -78,16 +89,10 @@ export default function Form() {
         />
       </fieldset>
       <button className="form-submit-button">Enviar</button>
-      {statusForm !== "completed" && statusForm !== "" && (
-        <>
-          <p className="form-validation required">
-            Todos los campos son obligatorios
-          </p>
-          <p
-            className={`form-validation ${statusForm}`}
-          >{`Falta el campo ${statusForm}`}</p>
-        </>
-      )}
+      <button className="form-reset-button" type="reset" onClick={handleReset}>
+        Reset
+      </button>
+      <ShowValidation statusForm={statusForm} />
     </form>
   );
 }
